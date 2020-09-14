@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Message from '../Message';
+import './messagesContainer.scss';
 
 const MessagesContainer = ({ messages }) => {
   return (
-    <div>
+    <div className='messages__container'>
       {
         messages.map((message) => <Message key={message}>{message}</Message>)
       }

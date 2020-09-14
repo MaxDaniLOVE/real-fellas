@@ -1,0 +1,18 @@
+@import '../../variables';
+
+.send-message__wrapper{
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  input{
+    border-color: none;
+  }
+  .btn{
+    background-color: $dim-grey;
+    border-color: none;
+    .fa-paper-plane{
+      width: 1rem;
+      fill: $white;
+    }
+  }
+}

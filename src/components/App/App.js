@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import MessageContainer from '../MessagesContainer';
-import { Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import initSocket from '../../store/ac/initSocket';
-import onChangeMessageInput from '../../store/ac/onChangeMessageInput';
-import ws from '../../utils/ws';
+import MessageInput from '../MessageInput';
 import './App.scss';
 
 class App extends Component {
@@ -13,13 +11,8 @@ class App extends Component {
     this.props.initSocket();
   }
 
-  sendMessage = () => {
-    const { message } = this.props;
-    ws.send(message);
-  }
-
   render() {
-    const { isOpenedConnection, onChangeMessageInput, message } = this.props;
+    const { isOpenedConnection } = this.props;
 
     return (
       <div className="container">
@@ -27,8 +20,7 @@ class App extends Component {
           isOpenedConnection ? (
             <>
               <MessageContainer />
-              <Input onChange={onChangeMessageInput} value={message} />
-              <Button onClick={this.sendMessage}>send</Button>
+              <MessageInput />
             </> 
           ) : <div>wait</div>
         }
@@ -42,7 +34,7 @@ const mapStateToProps = ({ data: { isOpenedConnection, message } }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ initSocket, onChangeMessageInput }, dispatch);
+  return bindActionCreators({ initSocket }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
