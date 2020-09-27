@@ -1,40 +1,28 @@
-import React, { Component } from 'react';
-import MessageContainer from '../MessagesContainer';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import initSocket from '../../store/ac/initSocket';
-import MessageInput from '../MessageInput';
+import React from 'react';
+import { BrowserRouter as Router,
+  Switch,
+  Route, } from 'react-router-dom';
+import { LoginPage, ChatPage } from '../../pages';
+import Container from '../Container';
+
 import './App.scss';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.initSocket();
-  }
-
-  render() {
-    const { isOpenedConnection } = this.props;
-
+const App = () => {
     return (
-      <div className="container">
-        {
-          isOpenedConnection ? (
-            <>
-              <MessageContainer />
-              <MessageInput />
-            </> 
-          ) : <div>wait</div>
-        }
-      </div>
+      <Container>
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <ChatPage />
+            </Route>
+            <Route exact path='/login'>
+              <LoginPage />
+            </Route>
+          </Switch>
+        </Router>
+      </Container>
     );
   }
-}
 
-const mapStateToProps = ({ data: { isOpenedConnection, message } }) => {
-  return { isOpenedConnection, message };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ initSocket }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
