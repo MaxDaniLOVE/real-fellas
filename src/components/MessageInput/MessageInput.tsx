@@ -1,13 +1,22 @@
 import React from 'react';
 import { Input, Button, InputGroupAddon, InputGroup } from 'reactstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import { SendIcon } from '../../assets/icons';
 import onChangeMessageInput from '../../store/ac/onChangeMessageInput';
 import ws from '../../utils/ws';
 import './messageInput.scss';
 
-const MessageInput = ({ message, onChangeMessageInput }) => {
+interface StateProps {
+    message: string,
+}
+interface DispatchProps {
+    onChangeMessageInput(e: any): void,
+}
+
+type MessageInputProps = StateProps & DispatchProps;
+
+const MessageInput = ({ message, onChangeMessageInput }: MessageInputProps) => {
   const sendMessage = () => {
     ws.send(message);
   }
@@ -23,12 +32,8 @@ const MessageInput = ({ message, onChangeMessageInput }) => {
   );
 }
 
-const mapStateToProps = ({ data: { isOpenedConnection, message } }) => {
-  return { isOpenedConnection, message };
-};
+const mapStateToProps = ({ data: { message } }):StateProps => ({ message });
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ onChangeMessageInput }, dispatch);
-};
+const mapDispatchToProps = (dispatch: Dispatch):DispatchProps => bindActionCreators({ onChangeMessageInput }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);

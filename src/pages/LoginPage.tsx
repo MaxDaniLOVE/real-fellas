@@ -1,13 +1,26 @@
 import React from 'react';
 import { Input, Form, Button, Label, CustomInput } from 'reactstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { authFormChange } from '../store/ac/authFormChange';
 import { registerUser, signIn } from '../store/ac/authActions';
 import { switchRegisterMode } from '../store/ac/switchRegisterMode';
+import {AppStateType} from "../store/reducers";
 
-const LoginPage = ({ authFormChange, isRegisterMode, registerUser, signIn, switchRegisterMode }) => {
-    const onSubmit = (event) => {
+interface StateProps {
+    isRegisterMode: boolean,
+}
+interface DispatchProps {
+    authFormChange(event: any): void,
+    registerUser(): void,
+    signIn(): void,
+    switchRegisterMode(event: any): void,
+}
+
+type LoginPageProps = StateProps & DispatchProps;
+
+const LoginPage = ({ authFormChange, isRegisterMode, registerUser, signIn, switchRegisterMode }: LoginPageProps) => {
+    const onSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         return isRegisterMode ? registerUser() : signIn();
     }
@@ -33,12 +46,17 @@ const LoginPage = ({ authFormChange, isRegisterMode, registerUser, signIn, switc
     );
 };
 
-const mapStateToProps = ({ auth: { isRegisterMode } }) => {
-    return { isRegisterMode };
-};
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ authFormChange, registerUser, signIn, switchRegisterMode }, dispatch);
-};
+
+const mapStateToProps = (state: AppStateType) => ({
+    isRegisterMode: state.auth.isRegisterMode,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCreators({
+    authFormChange,
+    registerUser,
+    signIn,
+    switchRegisterMode,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

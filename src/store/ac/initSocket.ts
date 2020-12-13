@@ -12,7 +12,7 @@ const initSocket = () => (dispatch, getState) => {
   }
   ws.onmessage = ({ data }) => {
     const { data : { messages } } = getState();
-    dispatch({ type: T.MESSAGE_RECIEVE, payload: { messages: [ ...messages, data ] } });
+    dispatch({ type: T.MESSAGE_RECEIVE, payload: { messages: [ ...messages, data ] } });
   }
 }
 

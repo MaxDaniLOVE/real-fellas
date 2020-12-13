@@ -2,7 +2,13 @@ import { combineReducers } from 'redux';
 import dataReducer from './dataReducer';
 import authReducer from './authReducer';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   data: dataReducer,
   auth: authReducer,
 });
+
+export default rootReducer
+
+type ReducerType = typeof rootReducer;
+
+export type AppStateType = ReturnType<ReducerType>

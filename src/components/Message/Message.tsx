@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Message = ({ children }) => {
+interface MessageProps {
+  children: string,
+}
+
+const Message = ({ children }: MessageProps ) => {
   return (
     <p>
       {children}

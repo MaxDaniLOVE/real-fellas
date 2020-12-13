@@ -5,7 +5,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import initSocket from "../store/ac/initSocket";
 
-class ChatPage extends Component {
+type ChatPageProps = {
+    initSocket(): void,
+    isOpenedConnection: boolean,
+    message: string,
+}
+
+class ChatPage extends Component<ChatPageProps> {
     componentDidMount() {
         this.props.initSocket();
     }
@@ -28,12 +34,15 @@ class ChatPage extends Component {
     }
 }
 
-const mapStateToProps = ({ data: { isOpenedConnection, message } }) => {
-    return { isOpenedConnection, message };
-};
+interface StateProps {
+    isOpenedConnection: boolean,
+    message: string,
+}
+interface DispatchProps {
+    initSocket(): void,
+}
+const mapStateToProps = ({ data: { isOpenedConnection, message } }): StateProps => ({ isOpenedConnection, message });
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ initSocket }, dispatch);
-};
+const mapDispatchToProps = (dispatch): DispatchProps => bindActionCreators({ initSocket }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);
