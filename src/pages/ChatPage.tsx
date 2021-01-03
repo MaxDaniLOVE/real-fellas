@@ -23,10 +23,10 @@ class ChatPage extends Component<ChatPageProps> {
             <div className="container">
                 {
                     isOpenedConnection ? (
-                        <>
+                        <div className='messages'>
                             <MessageContainer />
                             <MessageInput />
-                        </>
+                        </div>
                     ) : <div>wait</div>
                 }
             </div>
