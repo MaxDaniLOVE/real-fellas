@@ -24,3 +24,5 @@ yarn-error.log*
 
 # production
 /.netlify
+# Local Netlify folder
+.netlify

@@ -1,4 +1,4 @@
-import * as T from '../constants';
+// import * as T from '../constants';
 import axios from 'axios';
 
 export const registerUser = () => async (dispatch, getState) => {
