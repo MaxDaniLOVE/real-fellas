@@ -2,7 +2,7 @@ import * as T from '../constants';
 import axios from 'axios';
 
 export const registerUser = () => async (dispatch, getState) => {
-     await axios.get('http://localhost:8080/test')
+     await axios.post('http://localhost:8080/user/register', {})
 }
 
 export const signIn = () => (dispatch, getState) => {

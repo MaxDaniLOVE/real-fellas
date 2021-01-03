@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store';
 import App from './components/App';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <Provider store={store}>
