@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 export const registerUser = () => async (dispatch, getState) => {
-     await axios.post('http://localhost:8080/user/register', {})
+     await axios.post('/user/register', {})
 }
 
 export const signIn = () => (dispatch, getState) => {

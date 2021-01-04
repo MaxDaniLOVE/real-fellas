@@ -9,6 +9,7 @@ import App from './components/App';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.REACT_APP_URL_BASE;
 
 ReactDOM.render(
   <Provider store={store}>
