@@ -5,3 +5,6 @@ export const ON_CHANGE_MESSAGE: string = 'ON_CHANGE_MESSAGE';
 export const MESSAGE_RECEIVE: string = 'MESSAGE_RECEIVE';
 export const SWITCH_REGISTER_MODE: string = 'SWITCH_REGISTER_MODE';
 export const CHANGE_LOGIN_FORM: string = 'CHANGE_LOGIN_FORM';
+export const SIGN_UP: string = 'SIGN_UP';
+export const SIGN_IN: string = 'SIGN_IN';
+export const SIGN_OUT: string = 'SIGN_OUT';

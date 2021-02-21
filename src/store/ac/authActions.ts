@@ -1,14 +1,31 @@
-// import * as T from '../constants';
+import * as T from '../constants';
 import axios from 'axios';
 
 export const registerUser = () => async (dispatch, getState) => {
-     await axios.post('/user/register', {})
+    const { auth: { password, email } } = getState();
+    try {
+        await axios.post('/user/sign-up', { password, email });
+        dispatch({ type: T.SIGN_UP + T.SUCCESS });
+    } catch (err) {
+        dispatch({ type: T.SIGN_UP + T.ERROR });
+    }
 }
 
-export const signIn = () => (dispatch, getState) => {
-    console.log('SIGN IN')
+export const signIn = () => async (dispatch, getState) => {
+    const { auth: { password, email } } = getState();
+    try {
+        await axios.post('/user/sign-in', { password, email });
+        dispatch({ type: T.SIGN_IN + T.SUCCESS });
+    } catch (err) {
+        dispatch({ type: T.SIGN_IN + T.ERROR });
+    }
 }
 
-export const signOut = () => (dispatch, getState) => {
-    console.log('SIGN OUT')
+export const signOut = () => async dispatch => {
+    try {
+        await axios.get('/user/sign-out');
+        dispatch({ type: T.SIGN_OUT + T.SUCCESS });
+    } catch (err) {
+        dispatch({ type: T.SIGN_OUT + T.ERROR });
+    }
 }
