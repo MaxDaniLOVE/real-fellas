@@ -1,15 +1,12 @@
 import * as T from '../constants';
 
 export interface AuthState {
-    isLoggedIn: boolean,
     isRegisterMode: boolean,
     email: string,
     password: string,
 }
 
-
 const initialState: AuthState = {
-    isLoggedIn: false,
     isRegisterMode: false,
     email: '',
     password: '',
