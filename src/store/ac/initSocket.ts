@@ -1,8 +1,6 @@
 import * as T from '../constants';
-import ws from '../../utils/ws';
 
-const initSocket = () => (dispatch, getState) => {
-  
+const initSocket = ws => (dispatch, getState) => {
   ws.onopen = (e) => {
     dispatch({ type: T.INIT_WS + T.SUCCESS });
   }

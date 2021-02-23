@@ -1,2 +1,3 @@
-const ws = new WebSocket('wss://serene-oasis-46049.herokuapp.com/ws');
+const ws = new WebSocket(process.env.REACT_APP_WS_BASE as string);
+
 export default ws;

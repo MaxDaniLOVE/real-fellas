@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import { SendIcon } from '../../assets/icons';
 import onChangeMessageInput from '../../store/ac/onChangeMessageInput';
-import ws from '../../utils/ws';
 import './messageInput.scss';
 
 interface StateProps {
@@ -14,17 +13,17 @@ interface DispatchProps {
     onChangeMessageInput(e: any): void,
 }
 
-type MessageInputProps = StateProps & DispatchProps;
+type MessageInputProps = StateProps & DispatchProps & {
+  sendMessage(e: string): void
+};
 
-const MessageInput = ({ message, onChangeMessageInput }: MessageInputProps) => {
-  const sendMessage = () => {
-    ws.send(message);
-  }
+const MessageInput = ({ message, onChangeMessageInput, sendMessage }: MessageInputProps) => {
+  const onClick = () => sendMessage(message);
   return (
     <InputGroup className='send-message__wrapper'>
       <Input onChange={onChangeMessageInput} value={message} />
       <InputGroupAddon addonType="append">
-        <Button onClick={sendMessage}>
+        <Button onClick={onClick}>
           <SendIcon />
         </Button>
       </InputGroupAddon>

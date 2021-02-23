@@ -6,14 +6,16 @@ import { bindActionCreators } from 'redux';
 import initSocket from "../store/ac/initSocket";
 
 type ChatPageProps = {
-    initSocket(): void,
+    initSocket(ws): void,
     isOpenedConnection: boolean,
     message: string,
 }
 
 class ChatPage extends Component<ChatPageProps> {
+    private ws: WebSocket = new WebSocket(process.env.REACT_APP_WS_BASE as string);
+    private sendMessage = (message) => this.ws.send(message);
     componentDidMount() {
-        this.props.initSocket();
+        this.props.initSocket(this.ws);
     }
 
     render() {
@@ -25,7 +27,7 @@ class ChatPage extends Component<ChatPageProps> {
                     isOpenedConnection ? (
                         <div className='messages'>
                             <MessageContainer />
-                            <MessageInput />
+                            <MessageInput sendMessage={this.sendMessage} />
                         </div>
                     ) : <div>wait</div>
                 }
@@ -39,7 +41,7 @@ interface StateProps {
     message: string,
 }
 interface DispatchProps {
-    initSocket(): void,
+    initSocket(ws): void,
 }
 const mapStateToProps = ({ data: { isOpenedConnection, message } }): StateProps => ({ isOpenedConnection, message });
 
