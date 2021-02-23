@@ -1,27 +1,45 @@
 import React from 'react';
-import { BrowserRouter as Router,
+import {
+  BrowserRouter as Router,
   Switch,
-  Route, } from 'react-router-dom';
+  Route,
+  Redirect
+} from 'react-router-dom';
 import { LoginPage, ChatPage } from '../../pages';
 import Container from '../Container';
-
 import './App.scss';
+import {connect} from "react-redux";
 
-const App = () => {
+interface StateProps {
+    isLoggedIn: boolean,
+}
+
+const App = ({ isLoggedIn }: StateProps) => {
     return (
       <Container>
         <Router>
           <Switch>
-            <Route exact path='/'>
-              <ChatPage />
-            </Route>
-            <Route exact path='/login'>
-              <LoginPage />
-            </Route>
+            {
+              isLoggedIn ? (
+                <>
+                  <Route exact path='/'>
+                    <ChatPage />
+                  </Route>
+                  <Redirect to='/' />
+                </>
+              ) : (
+                <>
+                  <Route exact path='/login'>
+                    <LoginPage />
+                  </Route>
+                  <Redirect to='/login' />
+                </>
+              )
+            }
           </Switch>
         </Router>
       </Container>
     );
   }
-
-export default App;
+const mapStateToProps = ({ session: { isLoggedIn } }):StateProps => ({ isLoggedIn });
+export default connect(mapStateToProps)(App);

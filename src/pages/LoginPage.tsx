@@ -5,11 +5,14 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { authFormChange } from '../store/ac/authFormChange';
 import { registerUser, signIn } from '../store/ac/authActions';
 import { switchRegisterMode } from '../store/ac/switchRegisterMode';
-import {AppStateType} from "../store/reducers";
+import { AppStateType } from '../store/reducers';
+import { Redirect } from 'react-router-dom';
 
 interface StateProps {
     isRegisterMode: boolean,
+    isLoggedIn: boolean,
 }
+
 interface DispatchProps {
     authFormChange(event: any): void,
     registerUser(): void,
@@ -19,11 +22,19 @@ interface DispatchProps {
 
 type LoginPageProps = StateProps & DispatchProps;
 
-const LoginPage = ({ authFormChange, isRegisterMode, registerUser, signIn, switchRegisterMode }: LoginPageProps) => {
+const LoginPage = ({
+    authFormChange,
+    isRegisterMode,
+    registerUser,
+    signIn,
+    switchRegisterMode,
+    isLoggedIn,
+}: LoginPageProps) => {
     const onSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         return isRegisterMode ? registerUser() : signIn();
     }
+    if (isLoggedIn) return <Redirect to='/' />;
     return (
         <div className='login-form__wrapper'>
             <Form className='login-form' onChange={authFormChange} onSubmit={onSubmit}>
@@ -50,6 +61,7 @@ const LoginPage = ({ authFormChange, isRegisterMode, registerUser, signIn, switc
 
 const mapStateToProps = (state: AppStateType) => ({
     isRegisterMode: state.auth.isRegisterMode,
+    isLoggedIn: state.session.isLoggedIn,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => bindActionCreators({
