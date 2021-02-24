@@ -8,7 +8,6 @@ export const registerUser = () => async (dispatch, getState) => {
         dispatch({ type: T.SIGN_UP + T.SUCCESS, payload: { ...data } });
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
     } catch (err) {
-        alert(err.response.data)
         dispatch({ type: T.SIGN_UP + T.ERROR });
     }
 }
@@ -20,7 +19,6 @@ export const signIn = () => async (dispatch, getState) => {
         dispatch({ type: T.SIGN_IN + T.SUCCESS, payload: { ...data } });
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
     } catch (err) {
-        alert(err.response.data)
         dispatch({ type: T.SIGN_IN + T.ERROR });
     }
 }
@@ -31,7 +29,6 @@ export const signOut = () => async dispatch => {
         dispatch({ type: T.SIGN_OUT + T.SUCCESS });
         axios.defaults.headers.common['Authorization'] = '';
     } catch (err) {
-        alert(err.response.data)
         dispatch({ type: T.SIGN_OUT + T.ERROR });
     }
 }
