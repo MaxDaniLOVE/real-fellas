@@ -8,7 +8,7 @@ const MessagesContainer = ({ messages }) => {
   return (
     <div className='messages__container'>
       {
-        messages.map((message) => <Message key={message}>{message}</Message>)
+        messages.map(({ message }) => <Message key={message}>{message}</Message>)
       }
     </div>
   );

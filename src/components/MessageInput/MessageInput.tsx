@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Button, InputGroupAddon, InputGroup } from 'reactstrap';
 import { connect } from 'react-redux';
-import {bindActionCreators, Dispatch} from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { SendIcon } from '../../assets/icons';
 import onChangeMessageInput from '../../store/ac/onChangeMessageInput';
 import './messageInput.scss';

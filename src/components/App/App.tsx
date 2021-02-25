@@ -9,6 +9,7 @@ import { LoginPage, ChatPage } from '../../pages';
 import Container from '../Container';
 import './App.scss';
 import {connect} from "react-redux";
+import Header from "../Header";
 
 interface StateProps {
     isLoggedIn: boolean,
@@ -22,6 +23,7 @@ const App = ({ isLoggedIn }: StateProps) => {
             {
               isLoggedIn ? (
                 <>
+                  <Header />
                   <Route exact path='/'>
                     <ChatPage />
                   </Route>

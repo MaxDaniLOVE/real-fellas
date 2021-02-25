@@ -13,7 +13,7 @@ type ChatPageProps = {
 
 class ChatPage extends Component<ChatPageProps> {
     private ws: WebSocket = new WebSocket(process.env.REACT_APP_WS_BASE as string);
-    private sendMessage = (message) => this.ws.send(message);
+    private sendMessage = (message: string) => this.ws.send(JSON.stringify({ message }));
     componentDidMount() {
         this.props.initSocket(this.ws);
     }
