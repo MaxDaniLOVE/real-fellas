@@ -1,0 +1,21 @@
+@import '../../variables';
+
+.message__wrapper {
+  width: fit-content;
+  padding: .1rem .5rem;
+  max-width: 70vw;
+  background-color: $dim-grey;
+  color: $white;
+  border-radius: .25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  .message__author {
+    font-size: .75rem;
+  }
+}
+
+.logged-user-message{
+  background-color: $jet;
+  align-self: flex-end;
+}

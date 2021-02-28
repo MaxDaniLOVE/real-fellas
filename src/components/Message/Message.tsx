@@ -1,13 +1,22 @@
 import React from 'react';
-import { MessageProps } from '../../types';
+import { MessageProps, MessageStateProps } from '../../types';
+import { connect } from "react-redux";
+import './message.scss';
 
-const Message = ({ message }: MessageProps ) => {
+const Message = ({ message, id }: MessageProps ) => {
+  const isSendByLoggedUser = id === message.sendBy?.id;
   return (
-    <p className='message'>
-      {message.message}
-      {message.sendBy && `Send by: ${message.sendBy?.userName}`}
-    </p>
+    <div className={`message__wrapper ${isSendByLoggedUser ? 'logged-user-message' : ''}`}>
+      {
+        !isSendByLoggedUser && (
+          <span className='message__author'>{message.sendBy && message.sendBy?.userName}</span>
+        )
+      }
+      <span>{message.message}</span>
+    </div>
   );
 };
 
-export default Message;
+const mapStateToProps = ({ session: { id } }): MessageStateProps => ({ id });
+
+export default connect(mapStateToProps)(Message);

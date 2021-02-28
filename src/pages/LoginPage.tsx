@@ -24,6 +24,14 @@ const LoginPage = ({
     return (
         <div className='login-form__wrapper'>
             <Form className='login-form' onChange={authFormChange} onSubmit={onSubmit}>
+                {
+                    isRegisterMode && (
+                      <Label htmlFor='userName'>
+                          Email:
+                          <Input id='userName' />
+                      </Label>
+                    )
+                }
                 <Label htmlFor='email'>
                     Email:
                     <Input id='email' type='email' />
@@ -42,8 +50,6 @@ const LoginPage = ({
 
     );
 };
-
-
 
 const mapStateToProps = ({ auth: { isRegisterMode }, session: { isLoggedIn } }): LoginPageStateProps => ({
     isRegisterMode,

@@ -10,3 +10,4 @@ export const SIGN_IN: string = 'SIGN_IN';
 export const SIGN_OUT: string = 'SIGN_OUT';
 export const SHOW_SPINNER: string = 'SHOW_SPINNER';
 export const HIDE_SPINNER: string = 'HIDE_SPINNER';
+export const RESET_MESSAGES: string = 'RESET_MESSAGES';

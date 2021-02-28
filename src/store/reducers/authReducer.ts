@@ -5,6 +5,7 @@ const initialState: AuthState = {
     isRegisterMode: false,
     email: '',
     password: '',
+    userName: '',
 };
 
 const authReducer = (state: AuthState = initialState, { type, payload }) => {

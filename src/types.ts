@@ -6,6 +6,7 @@ export interface AuthState {
   isRegisterMode: boolean,
   email: string,
   password: string,
+  userName: string,
 }
 
 export interface DataState {
@@ -55,7 +56,11 @@ type Message = {
   sendBy: Sender | null,
 }
 
-export interface MessageProps {
+export interface MessageStateProps {
+  id: string
+}
+
+export type MessageProps = MessageStateProps & {
   message: Message
 }
 

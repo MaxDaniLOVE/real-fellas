@@ -3,4 +3,6 @@
   max-height: 85vh;
   width: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }

@@ -19,6 +19,8 @@ const dataReducer = (state: DataState = initialState, { type, payload }) => {
     case T.SHOW_SPINNER:
     case T.HIDE_SPINNER:
       return { ...state, ...payload };
+    case T.RESET_MESSAGES:
+      return initialState;
     default:
       return state;
   }
