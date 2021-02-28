@@ -16,6 +16,10 @@ class ChatPage extends Component<ChatPageProps> {
         this.props.initSocket(this.ws);
     }
 
+    componentWillUnmount() {
+        this.ws.close();
+    }
+
     render() {
         const { isOpenedConnection } = this.props;
 
