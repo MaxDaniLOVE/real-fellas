@@ -3,16 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { signOut } from "../../store/ac/authActions";
 import './header.scss';
-
-interface StateProps {
-  userName: string,
-}
-
-interface DispatchProps {
-  signOut(): void,
-}
-
-type HeaderTypes = StateProps & DispatchProps;
+import { HeaderDispatchProps, HeaderStateProps, HeaderTypes } from '../../types';
 
 const Header = ({ signOut, userName }: HeaderTypes) => {
   return (
@@ -21,6 +12,7 @@ const Header = ({ signOut, userName }: HeaderTypes) => {
     </div>
   );
 };
-const mapStateToProps = ({ session: { userName } }): StateProps => ({ userName });
-const mapDispatchToProps = (dispatch): DispatchProps => bindActionCreators({ signOut }, dispatch);
+
+const mapStateToProps = ({ session: { userName } }): HeaderStateProps => ({ userName });
+const mapDispatchToProps = (dispatch): HeaderDispatchProps => bindActionCreators({ signOut }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

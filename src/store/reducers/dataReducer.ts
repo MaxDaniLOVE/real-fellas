@@ -1,12 +1,5 @@
 import * as T from '../constants';
-
-export interface DataState {
-  messages: string[],
-  message: string,
-  isOpenedConnection: boolean,
-  lastMessage: string,
-  showSpinner: boolean,
-}
+import { DataState } from '../../types';
 
 const initialState: DataState = {
   messages: [],

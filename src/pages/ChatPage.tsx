@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import MessageContainer from "../components/MessagesContainer/MessagesContainer";
-import MessageInput from "../components/MessageInput/MessageInput";
+import MessageContainer from '../components/MessagesContainer/MessagesContainer';
+import MessageInput from '../components/MessageInput/MessageInput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import initSocket from "../store/ac/initSocket";
-
-interface StateProps {
-    isOpenedConnection: boolean,
-    message: string,
-    senderId: string,
-}
-interface DispatchProps {
-    initSocket(ws): void,
-}
-
-type ChatPageProps = StateProps & DispatchProps;
+import initSocket from '../store/ac/initSocket';
+import { ChatPageProps, ChatPageStateProps, ChatPageDispatchProps } from '../types';
 
 class ChatPage extends Component<ChatPageProps> {
     private ws: WebSocket = new WebSocket(process.env.REACT_APP_WS_BASE as string);
@@ -51,8 +41,10 @@ const mapStateToProps = ({
     session: {
         id: senderId,
     }
-}): StateProps => ({ isOpenedConnection, message, senderId });
+}): ChatPageStateProps => ({ isOpenedConnection, message, senderId });
 
-const mapDispatchToProps = (dispatch): DispatchProps => bindActionCreators({ initSocket }, dispatch);
+const mapDispatchToProps = (dispatch): ChatPageDispatchProps => bindActionCreators({
+    initSocket,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);

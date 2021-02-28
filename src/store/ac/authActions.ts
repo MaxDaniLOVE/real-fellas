@@ -1,8 +1,9 @@
 import * as T from '../constants';
 import axios from 'axios';
 import { showSpinner, hideSpinner } from './spinnerActions';
+import { ThunkActionCreator } from '../../types';
 
-export const registerUser = () => async (dispatch, getState) => {
+export const registerUser = (): ThunkActionCreator => async (dispatch, getState) => {
     const { auth: { password, email } } = getState();
     dispatch(showSpinner());
     try {
@@ -15,7 +16,7 @@ export const registerUser = () => async (dispatch, getState) => {
     dispatch(hideSpinner());
 }
 
-export const signIn = () => async (dispatch, getState) => {
+export const signIn = (): ThunkActionCreator => async (dispatch, getState) => {
     const { auth: { password, email } } = getState();
     dispatch(showSpinner());
     try {
@@ -28,7 +29,7 @@ export const signIn = () => async (dispatch, getState) => {
     dispatch(hideSpinner());
 }
 
-export const signOut = () => async dispatch => {
+export const signOut = (): ThunkActionCreator => async dispatch => {
     dispatch(showSpinner());
     try {
         await axios.get('/user/sign-out');

@@ -1,10 +1,5 @@
 import * as T from '../constants';
-
-export interface AuthState {
-    isRegisterMode: boolean,
-    email: string,
-    password: string,
-}
+import { AuthState } from '../../types';
 
 const initialState: AuthState = {
     isRegisterMode: false,

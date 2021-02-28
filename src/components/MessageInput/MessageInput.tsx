@@ -5,17 +5,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { SendIcon } from '../../assets/icons';
 import onChangeMessageInput from '../../store/ac/onChangeMessageInput';
 import './messageInput.scss';
-
-interface StateProps {
-    message: string,
-}
-interface DispatchProps {
-    onChangeMessageInput(e: any): void,
-}
-
-type MessageInputProps = StateProps & DispatchProps & {
-  sendMessage(e: string): void
-};
+import { MessageInputProps, MessageInputDispatchProps, MessageInputStateProps } from '../../types';
 
 const MessageInput = ({ message, onChangeMessageInput, sendMessage }: MessageInputProps) => {
   const onClick = () => sendMessage(message);
@@ -31,8 +21,10 @@ const MessageInput = ({ message, onChangeMessageInput, sendMessage }: MessageInp
   );
 }
 
-const mapStateToProps = ({ data: { message } }):StateProps => ({ message });
+const mapStateToProps = ({ data: { message } }):MessageInputStateProps => ({ message });
 
-const mapDispatchToProps = (dispatch: Dispatch):DispatchProps => bindActionCreators({ onChangeMessageInput }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch):MessageInputDispatchProps => bindActionCreators({
+  onChangeMessageInput
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);

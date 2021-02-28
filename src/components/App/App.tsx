@@ -9,13 +9,10 @@ import { LoginPage, ChatPage } from '../../pages';
 import Container from '../Container';
 import './App.scss';
 import {connect} from 'react-redux';
-import Header from "../Header";
+import Header from '../Header';
+import { AppStateProps } from '../../types';
 
-interface StateProps {
-    isLoggedIn: boolean,
-}
-
-const App = ({ isLoggedIn }: StateProps) => {
+const App = ({ isLoggedIn }: AppStateProps) => {
     return (
       <Container>
         <Router>
@@ -43,5 +40,5 @@ const App = ({ isLoggedIn }: StateProps) => {
       </Container>
     );
   }
-const mapStateToProps = ({ session: { isLoggedIn } }):StateProps => ({ isLoggedIn });
+const mapStateToProps = ({ session: { isLoggedIn } }):AppStateProps => ({ isLoggedIn });
 export default connect(mapStateToProps)(App);

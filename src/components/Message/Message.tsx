@@ -1,12 +1,9 @@
 import React from 'react';
-
-interface MessageProps {
-  children: string,
-}
+import { MessageProps } from '../../types';
 
 const Message = ({ children }: MessageProps ) => {
   return (
-    <p>
+    <p className='message'>
       {children}
     </p>
   );

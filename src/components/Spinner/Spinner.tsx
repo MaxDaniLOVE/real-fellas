@@ -2,12 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './spinner.scss';
+import { SpinnerStateProps } from '../../types';
 
-interface StateProps {
-  showSpinner: boolean,
-}
-
-const Spinner = ({ showSpinner }: StateProps) => {
+const Spinner = ({ showSpinner }: SpinnerStateProps) => {
   const spinnerNode = showSpinner ? (
     <div className='spinner-wrapper' >
       <div className='spinner'>
@@ -24,5 +21,5 @@ const Spinner = ({ showSpinner }: StateProps) => {
     : null;
 }
 
-const mapStateToProps = ({ data: { showSpinner } }): StateProps => ({ showSpinner })
+const mapStateToProps = ({ data: { showSpinner } }): SpinnerStateProps => ({ showSpinner })
 export default connect(mapStateToProps)(Spinner);

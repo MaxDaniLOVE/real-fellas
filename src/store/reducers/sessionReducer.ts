@@ -1,14 +1,8 @@
 import * as T from '../constants';
+import { SessionState } from '../../types';
 
-export interface sessionState {
-    isLoggedIn: boolean,
-    email: string,
-    userName: string,
-    authToken: string,
-    id: string,
-}
 
-const initialState: sessionState = {
+const initialState: SessionState = {
     isLoggedIn: false,
     email: '',
     userName: '',
@@ -16,7 +10,7 @@ const initialState: sessionState = {
     id: '',
 };
 
-const sessionReducer = (state: sessionState = initialState, { type, payload }) => {
+const sessionReducer = (state: SessionState = initialState, { type, payload }) => {
     switch (type) {
         case T.SIGN_UP + T.SUCCESS:
         case T.SIGN_IN + T.SUCCESS:

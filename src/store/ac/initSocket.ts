@@ -1,6 +1,7 @@
 import * as T from '../constants';
+import { ThunkActionCreator } from '../../types';
 
-const initSocket = ws => (dispatch, getState) => {
+const initSocket = (ws): ThunkActionCreator => (dispatch, getState) => {
   ws.onopen = (e) => {
     dispatch({ type: T.INIT_WS + T.SUCCESS });
   }

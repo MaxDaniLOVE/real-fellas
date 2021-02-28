@@ -1,0 +1,92 @@
+import { ThunkAction } from 'redux-thunk';
+import { Action, ActionCreator } from 'redux';
+import { AppStateType } from './store/reducers';
+
+export interface AuthState {
+  isRegisterMode: boolean,
+  email: string,
+  password: string,
+}
+
+export interface DataState {
+  messages: string[],
+  message: string,
+  isOpenedConnection: boolean,
+  lastMessage: string,
+  showSpinner: boolean,
+}
+
+export interface SessionState {
+  isLoggedIn: boolean,
+  email: string,
+  userName: string,
+  authToken: string,
+  id: string,
+}
+
+export interface AppStateProps {
+  isLoggedIn: boolean,
+}
+
+export interface ContainerStateProps {
+  children: React.ReactNode,
+}
+
+export interface HeaderStateProps {
+  userName: string,
+}
+
+export interface HeaderDispatchProps {
+  signOut(): void,
+}
+
+export type HeaderTypes = HeaderStateProps & HeaderDispatchProps;
+
+export interface MessageProps {
+  children: string,
+}
+
+
+export interface MessageInputStateProps {
+  message: string,
+}
+export interface MessageInputDispatchProps {
+  onChangeMessageInput(e: any): void,
+}
+
+export type MessageInputProps = MessageInputStateProps & MessageInputDispatchProps & {
+  sendMessage(e: string): void
+};
+
+export interface SpinnerStateProps {
+  showSpinner: boolean,
+}
+
+export interface ChatPageStateProps {
+  isOpenedConnection: boolean,
+  message: string,
+  senderId: string,
+}
+export interface ChatPageDispatchProps {
+  initSocket(ws): void,
+}
+
+export type ChatPageProps = ChatPageStateProps & ChatPageDispatchProps;
+
+export interface LoginPageStateProps {
+  isRegisterMode: boolean,
+  isLoggedIn: boolean,
+}
+
+export interface LoginPageDispatchProps {
+  authFormChange(event: any): void,
+  registerUser(): void,
+  signIn(): void,
+  switchRegisterMode(event: any): void,
+}
+
+export type LoginPageProps = LoginPageStateProps & LoginPageDispatchProps;
+
+export type ThunkActionCreator<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, Action<string>>;
+
+export type DefaultActionCreator = ActionCreator<Action>;
