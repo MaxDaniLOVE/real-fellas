@@ -1,10 +1,11 @@
 import React from 'react';
 import { MessageProps } from '../../types';
 
-const Message = ({ children }: MessageProps ) => {
+const Message = ({ message }: MessageProps ) => {
   return (
     <p className='message'>
-      {children}
+      {message.message}
+      {message.sendBy && `Send by: ${message.sendBy?.userName}`}
     </p>
   );
 };

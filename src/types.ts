@@ -9,7 +9,7 @@ export interface AuthState {
 }
 
 export interface DataState {
-  messages: string[],
+  messages: Message[],
   message: string,
   isOpenedConnection: boolean,
   lastMessage: string,
@@ -42,10 +42,22 @@ export interface HeaderDispatchProps {
 
 export type HeaderTypes = HeaderStateProps & HeaderDispatchProps;
 
-export interface MessageProps {
-  children: string,
+type Sender = {
+  id: string,
+  userName: string,
+  email: string,
 }
 
+type Message = {
+  id: string
+  message: string,
+  timestamp: string,
+  sendBy: Sender | null,
+}
+
+export interface MessageProps {
+  message: Message
+}
 
 export interface MessageInputStateProps {
   message: string,
