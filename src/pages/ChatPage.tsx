@@ -5,15 +5,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import initSocket from "../store/ac/initSocket";
 
-type ChatPageProps = {
-    initSocket(ws): void,
+interface StateProps {
     isOpenedConnection: boolean,
     message: string,
+    senderId: string,
 }
+interface DispatchProps {
+    initSocket(ws): void,
+}
+
+type ChatPageProps = StateProps & DispatchProps;
 
 class ChatPage extends Component<ChatPageProps> {
     private ws: WebSocket = new WebSocket(process.env.REACT_APP_WS_BASE as string);
-    private sendMessage = (message: string) => this.ws.send(JSON.stringify({ message }));
+    private sendMessage = (message: string) => {
+        const { senderId } = this.props;
+        this.ws.send(JSON.stringify({ message, senderId }))
+    };
     componentDidMount() {
         this.props.initSocket(this.ws);
     }
@@ -36,14 +44,14 @@ class ChatPage extends Component<ChatPageProps> {
     }
 }
 
-interface StateProps {
-    isOpenedConnection: boolean,
-    message: string,
-}
-interface DispatchProps {
-    initSocket(ws): void,
-}
-const mapStateToProps = ({ data: { isOpenedConnection, message } }): StateProps => ({ isOpenedConnection, message });
+const mapStateToProps = ({
+    data: {
+        isOpenedConnection, message,
+    },
+    session: {
+        id: senderId,
+    }
+}): StateProps => ({ isOpenedConnection, message, senderId });
 
 const mapDispatchToProps = (dispatch): DispatchProps => bindActionCreators({ initSocket }, dispatch);
 

@@ -10,7 +10,9 @@ const initSocket = ws => (dispatch, getState) => {
   }
   ws.onmessage = ({ data }) => {
     const { data : { messages } } = getState();
-    dispatch({ type: T.MESSAGE_RECEIVE, payload: { messages: [ ...messages, JSON.parse(data) ] } });
+    const payload = JSON.parse(data);
+    const updatedMessages = Array.isArray(payload) ? [ ...messages, ...payload ] : [ ...messages, payload ];
+    dispatch({ type: T.MESSAGE_RECEIVE, payload: { messages: updatedMessages } });
   }
 }
 

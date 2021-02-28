@@ -5,6 +5,7 @@ export interface sessionState {
     email: string,
     userName: string,
     authToken: string,
+    id: string,
 }
 
 const initialState: sessionState = {
@@ -12,6 +13,7 @@ const initialState: sessionState = {
     email: '',
     userName: '',
     authToken: '',
+    id: '',
 };
 
 const sessionReducer = (state: sessionState = initialState, { type, payload }) => {
