@@ -8,3 +8,5 @@ export const CHANGE_LOGIN_FORM: string = 'CHANGE_LOGIN_FORM';
 export const SIGN_UP: string = 'SIGN_UP';
 export const SIGN_IN: string = 'SIGN_IN';
 export const SIGN_OUT: string = 'SIGN_OUT';
+export const SHOW_SPINNER: string = 'SHOW_SPINNER';
+export const HIDE_SPINNER: string = 'HIDE_SPINNER';

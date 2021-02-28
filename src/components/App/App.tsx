@@ -8,7 +8,7 @@ import {
 import { LoginPage, ChatPage } from '../../pages';
 import Container from '../Container';
 import './App.scss';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import Header from "../Header";
 
 interface StateProps {

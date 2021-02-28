@@ -1,8 +1,10 @@
 import * as T from '../constants';
 import axios from 'axios';
+import { showSpinner, hideSpinner } from './spinnerActions';
 
 export const registerUser = () => async (dispatch, getState) => {
     const { auth: { password, email } } = getState();
+    dispatch(showSpinner());
     try {
         const { data } = await axios.post('/user/sign-up', { password, email });
         dispatch({ type: T.SIGN_UP + T.SUCCESS, payload: { ...data } });
@@ -10,10 +12,12 @@ export const registerUser = () => async (dispatch, getState) => {
     } catch (err) {
         dispatch({ type: T.SIGN_UP + T.ERROR });
     }
+    dispatch(hideSpinner());
 }
 
 export const signIn = () => async (dispatch, getState) => {
     const { auth: { password, email } } = getState();
+    dispatch(showSpinner());
     try {
         const { data } = await axios.post('/user/sign-in', { password, email });
         dispatch({ type: T.SIGN_IN + T.SUCCESS, payload: { ...data } });
@@ -21,9 +25,11 @@ export const signIn = () => async (dispatch, getState) => {
     } catch (err) {
         dispatch({ type: T.SIGN_IN + T.ERROR });
     }
+    dispatch(hideSpinner());
 }
 
 export const signOut = () => async dispatch => {
+    dispatch(showSpinner());
     try {
         await axios.get('/user/sign-out');
         dispatch({ type: T.SIGN_OUT + T.SUCCESS });
@@ -31,4 +37,5 @@ export const signOut = () => async dispatch => {
     } catch (err) {
         dispatch({ type: T.SIGN_OUT + T.ERROR });
     }
+    dispatch(hideSpinner());
 }

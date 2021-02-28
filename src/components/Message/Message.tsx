@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 interface MessageProps {
   children: string,
@@ -12,11 +11,5 @@ const Message = ({ children }: MessageProps ) => {
     </p>
   );
 };
-
-
-Message.propTypes = {
-  children: PropTypes.string.isRequired,
-};
-
 
 export default Message;
