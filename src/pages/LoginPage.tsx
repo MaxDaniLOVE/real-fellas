@@ -27,7 +27,7 @@ const LoginPage = ({
                 {
                     isRegisterMode && (
                       <Label htmlFor='userName'>
-                          Email:
+                          User name:
                           <Input id='userName' />
                       </Label>
                     )
