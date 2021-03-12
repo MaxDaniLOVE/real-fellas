@@ -3,6 +3,7 @@ import axios from 'axios';
 import { showSpinner, hideSpinner } from './spinnerActions';
 import { ThunkActionCreator } from '../../types';
 import { resetMessages } from './resetMessages';
+import { throwError } from "./errorActions";
 
 export const registerUser = (): ThunkActionCreator => async (dispatch, getState) => {
     const { auth: { password, email, userName } } = getState();
@@ -12,7 +13,7 @@ export const registerUser = (): ThunkActionCreator => async (dispatch, getState)
         dispatch({ type: T.SIGN_UP + T.SUCCESS, payload: { ...data } });
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
     } catch (err) {
-        dispatch({ type: T.SIGN_UP + T.ERROR });
+        dispatch(throwError(err));
     }
     dispatch(hideSpinner());
 }
@@ -25,7 +26,7 @@ export const signIn = (): ThunkActionCreator => async (dispatch, getState) => {
         dispatch({ type: T.SIGN_IN + T.SUCCESS, payload: { ...data } });
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
     } catch (err) {
-        dispatch({ type: T.SIGN_IN + T.ERROR });
+        dispatch(throwError(err));
     }
     dispatch(hideSpinner());
 }
@@ -38,7 +39,7 @@ export const signOut = (): ThunkActionCreator => async dispatch => {
         axios.defaults.headers.common['Authorization'] = '';
         dispatch(resetMessages());
     } catch (err) {
-        dispatch({ type: T.SIGN_OUT + T.ERROR });
+        dispatch(throwError(err));
     }
     dispatch(hideSpinner());
 }

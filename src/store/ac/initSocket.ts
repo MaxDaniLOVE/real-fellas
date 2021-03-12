@@ -1,13 +1,13 @@
 import * as T from '../constants';
 import { ThunkActionCreator } from '../../types';
+import { throwError } from "./errorActions";
 
 const initSocket = (ws): ThunkActionCreator => (dispatch, getState) => {
   ws.onopen = (e) => {
     dispatch({ type: T.INIT_WS + T.SUCCESS });
   }
   ws.onerror = (error) => {
-    console.log(error);
-    dispatch({ type: T.INIT_WS + T.ERROR });
+    dispatch(throwError(error));
   }
   ws.onmessage = ({ data }) => {
     const { data : { messages } } = getState();

@@ -11,6 +11,7 @@ import './App.scss';
 import {connect} from 'react-redux';
 import Header from '../Header';
 import { AppStateProps } from '../../types';
+import AlertsContainer from "../AlertsContainer";
 
 const App = ({ isLoggedIn }: AppStateProps) => {
     return (
@@ -37,6 +38,7 @@ const App = ({ isLoggedIn }: AppStateProps) => {
             }
           </Switch>
         </Router>
+      <AlertsContainer />
       </Container>
     );
   }

@@ -26,10 +26,10 @@ const LoginPage = ({
             <Form className='login-form' onChange={authFormChange} onSubmit={onSubmit}>
                 {
                     isRegisterMode && (
-                      <Label htmlFor='userName'>
-                          User name:
-                          <Input id='userName' />
-                      </Label>
+                        <Label htmlFor='userName'>
+                            User name:
+                            <Input id='userName' />
+                        </Label>
                     )
                 }
                 <Label htmlFor='email'>

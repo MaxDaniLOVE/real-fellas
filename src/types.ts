@@ -107,3 +107,14 @@ export type LoginPageProps = LoginPageStateProps & LoginPageDispatchProps;
 export type ThunkActionCreator<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, Action<string>>;
 
 export type DefaultActionCreator = ActionCreator<Action>;
+
+export interface ErrorState {
+  status: number,
+  message: string,
+}
+export interface ErrorContainerStateProps {
+  error: ErrorState,
+}
+export interface ErrorContainerDispatchProps {
+  closeError(): void,
+}

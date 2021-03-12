@@ -1,0 +1,23 @@
+.alerts__container{
+  position: fixed;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  &-item{
+    padding: .25rem;
+    font-size: .75rem;
+    height: fit-content;
+    .close{
+      padding: 0;
+      height: 100%;
+      width: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        font-size: 1rem;
+      }
+    }
+  }
+}
