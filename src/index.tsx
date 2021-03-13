@@ -12,11 +12,11 @@ import Spinner from './components/Spinner';
 axios.defaults.baseURL = process.env.REACT_APP_URL_BASE;
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-      <Spinner />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+			<Spinner />
+		</BrowserRouter>
+	</Provider>,
+	document.getElementById('root')
 );

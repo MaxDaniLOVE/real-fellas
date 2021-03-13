@@ -3,25 +3,25 @@ import { SessionState } from '../../types';
 
 
 const initialState: SessionState = {
-    isLoggedIn: false,
-    email: '',
-    userName: '',
-    authToken: '',
-    id: '',
+	isLoggedIn: false,
+	email: '',
+	userName: '',
+	authToken: '',
+	id: '',
 };
 
 const sessionReducer = (state: SessionState = initialState, { type, payload }) => {
-    switch (type) {
-        case T.SIGN_UP + T.SUCCESS:
-        case T.SIGN_IN + T.SUCCESS:
-            return { ...state, ...payload, isLoggedIn: true };
-        case T.SIGN_OUT + T.SUCCESS:
-            return { ...state, ...payload, isLoggedIn: false };
-        case T.SWITCH_REGISTER_MODE:
-            return { ...state, ...payload };
-        default:
-            return state;
-    }
+	switch (type) {
+	case T.SIGN_UP + T.SUCCESS:
+	case T.SIGN_IN + T.SUCCESS:
+		return { ...state, ...payload, isLoggedIn: true };
+	case T.SIGN_OUT + T.SUCCESS:
+		return { ...state, ...payload, isLoggedIn: false };
+	case T.SWITCH_REGISTER_MODE:
+		return { ...state, ...payload };
+	default:
+		return state;
+	}
 };
 
 export default sessionReducer;

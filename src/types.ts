@@ -3,103 +3,107 @@ import { Action, ActionCreator } from 'redux';
 import { AppStateType } from './store/reducers';
 
 export interface AuthState {
-  isRegisterMode: boolean,
-  email: string,
-  password: string,
-  userName: string,
+  isRegisterMode: boolean;
+  email: string;
+  password: string;
+  userName: string;
 }
 
 export interface DataState {
-  messages: Message[],
-  message: string,
-  isOpenedConnection: boolean,
-  lastMessage: string,
-  showSpinner: boolean,
+  messages: Message[];
+  message: string;
+  isOpenedConnection: boolean;
+  lastMessage: string;
+  showSpinner: boolean;
 }
 
 export interface SessionState {
-  isLoggedIn: boolean,
-  email: string,
-  userName: string,
-  authToken: string,
-  id: string,
+  isLoggedIn: boolean;
+  email: string;
+  userName: string;
+  authToken: string;
+  id: string;
 }
 
 export interface AppStateProps {
-  isLoggedIn: boolean,
+  isLoggedIn: boolean;
 }
 
 export interface ContainerStateProps {
-  children: React.ReactNode,
+  children: React.ReactNode;
 }
 
 export interface HeaderStateProps {
-  userName: string,
+  userName: string;
 }
 
 export interface HeaderDispatchProps {
-  signOut(): void,
+  signOut(): void;
 }
 
 export type HeaderTypes = HeaderStateProps & HeaderDispatchProps;
 
 type Sender = {
-  id: string,
-  userName: string,
-  email: string,
+  id: string;
+  userName: string;
+  email: string;
 }
 
 type Message = {
-  id: string
-  message: string,
-  timestamp: string,
-  sendBy: Sender | null,
+  id: string;
+  message: string;
+  timestamp: string;
+  sendBy: Sender | null;
 }
 
 export interface MessageStateProps {
-  id: string
+  id: string;
+}
+
+export interface MessagesProps {
+  messages: Array<Message>;
 }
 
 export type MessageProps = MessageStateProps & {
-  message: Message
+  message: Message;
 }
 
 export interface MessageInputStateProps {
-  message: string,
+  message: string;
 }
 export interface MessageInputDispatchProps {
-  onChangeMessageInput(e: any): void,
+  onChangeMessageInput(e: any): void;
 }
 
 export type MessageInputProps = MessageInputStateProps & MessageInputDispatchProps & {
-  sendMessage(e: string): void
+  sendMessage(e: string): void;
 };
 
 export interface SpinnerStateProps {
-  showSpinner: boolean,
+  showSpinner: boolean;
 }
 
 export interface ChatPageStateProps {
-  isOpenedConnection: boolean,
-  message: string,
-  senderId: string,
+  isOpenedConnection: boolean;
+  message: string;
+  senderId: string;
 }
 export interface ChatPageDispatchProps {
-  initSocket(ws): void,
+  initSocket(ws): void;
 }
 
 export type ChatPageProps = ChatPageStateProps & ChatPageDispatchProps;
 
 export interface LoginPageStateProps {
-  isRegisterMode: boolean,
-  isLoggedIn: boolean,
+  isRegisterMode: boolean;
+  isLoggedIn: boolean;
 }
 
 export interface LoginPageDispatchProps {
-  authFormChange(event: any): void,
-  registerUser(): void,
-  signIn(): void,
-  switchRegisterMode(event: any): void,
+  authFormChange(event: any): void;
+  registerUser(): void;
+  signIn(): void;
+  switchRegisterMode(event: any): void;
 }
 
 export type LoginPageProps = LoginPageStateProps & LoginPageDispatchProps;
@@ -109,12 +113,12 @@ export type ThunkActionCreator<ReturnType = void> = ThunkAction<ReturnType, AppS
 export type DefaultActionCreator = ActionCreator<Action>;
 
 export interface ErrorState {
-  status: number,
-  message: string,
+  status: number;
+  message: string;
 }
 export interface ErrorContainerStateProps {
-  error: ErrorState,
+  error: ErrorState;
 }
 export interface ErrorContainerDispatchProps {
-  closeError(): void,
+  closeError(): void;
 }

@@ -3,6 +3,6 @@ import ChatPage from './ChatPage';
 import './index.scss';
 
 export {
-    LoginPage,
-    ChatPage,
-}
+	LoginPage,
+	ChatPage,
+};
