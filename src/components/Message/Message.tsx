@@ -3,7 +3,7 @@ import { MessageProps, MessageStateProps } from '../../types';
 import { connect } from 'react-redux';
 import './message.scss';
 
-const Message = ({ message, id }: MessageProps ) => {
+const Message = ({ message, id }: MessageProps ): JSX.Element => {
 	const isSendByLoggedUser = id === message.sendBy?.id;
 	return (
 		<div className={`message__wrapper ${isSendByLoggedUser ? 'logged-user-message' : ''}`}>

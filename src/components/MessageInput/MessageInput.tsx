@@ -7,12 +7,12 @@ import onChangeMessageInput from '../../store/ac/onChangeMessageInput';
 import './messageInput.scss';
 import { MessageInputProps, MessageInputDispatchProps, MessageInputStateProps } from '../../types';
 
-const MessageInput = ({ message, onChangeMessageInput, sendMessage }: MessageInputProps) => {
-	const onClick = () => sendMessage(message);
+const MessageInput = ({ message, onChangeMessageInput, sendMessage }: MessageInputProps): JSX.Element => {
+	const onClick = (): void => sendMessage(message);
 	return (
 		<InputGroup className='send-message__wrapper'>
 			<Input onChange={onChangeMessageInput} value={message} />
-			<InputGroupAddon addonType="append">
+			<InputGroupAddon addonType='append'>
 				<Button onClick={onClick}>
 					<SendIcon />
 				</Button>

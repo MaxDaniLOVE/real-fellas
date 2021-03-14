@@ -6,7 +6,7 @@ import './header.scss';
 import { HeaderDispatchProps, HeaderStateProps, HeaderTypes } from '../../types';
 import { Button } from 'reactstrap';
 
-const Header = ({ signOut, userName }: HeaderTypes) => {
+const Header = ({ signOut, userName }: HeaderTypes): JSX.Element => {
 	const [ isHeaderExpanded, setIsHeaderExpanded ] = useState(false);
 	const onToggleHeader = useCallback(() => setIsHeaderExpanded(!isHeaderExpanded), [isHeaderExpanded]);
 	const onSignOut = useCallback(() => {

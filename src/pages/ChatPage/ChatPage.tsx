@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import MessageContainer from '../components/MessagesContainer/MessagesContainer';
-import MessageInput from '../components/MessageInput/MessageInput';
+import MessageContainer from '../../components/MessagesContainer/MessagesContainer';
+import MessageInput from '../../components/MessageInput/MessageInput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import initSocket from '../store/ac/initSocket';
-import { ChatPageProps, ChatPageStateProps, ChatPageDispatchProps } from '../types';
+import initSocket from '../../store/ac/initSocket';
+import { ChatPageProps, ChatPageStateProps, ChatPageDispatchProps } from '../../types';
+import './ChatPage.scss';
 
 class ChatPage extends Component<ChatPageProps> {
 	private ws: WebSocket = new WebSocket(process.env.REACT_APP_WS_BASE as string);
@@ -20,7 +21,7 @@ class ChatPage extends Component<ChatPageProps> {
 		this.ws.close();
 	}
 	
-	render() {
+	render(): JSX.Element {
 		const { isOpenedConnection } = this.props;
 	
 		return (

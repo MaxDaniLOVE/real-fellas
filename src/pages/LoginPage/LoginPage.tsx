@@ -2,11 +2,12 @@ import React from 'react';
 import { Input, Form, Button, Label, CustomInput } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { authFormChange } from '../store/ac/authFormChange';
-import { registerUser, signIn } from '../store/ac/authActions';
-import { switchRegisterMode } from '../store/ac/switchRegisterMode';
+import { authFormChange } from '../../store/ac/authFormChange';
+import { registerUser, signIn } from '../../store/ac/authActions';
+import { switchRegisterMode } from '../../store/ac/switchRegisterMode';
 import { Redirect } from 'react-router-dom';
-import { LoginPageDispatchProps, LoginPageProps, LoginPageStateProps } from '../types';
+import { LoginPageDispatchProps, LoginPageProps, LoginPageStateProps } from '../../types';
+import './LoginPage.scss';
 
 const LoginPage = ({
 	authFormChange,
@@ -15,8 +16,8 @@ const LoginPage = ({
 	signIn,
 	switchRegisterMode,
 	isLoggedIn,
-}: LoginPageProps) => {
-	const onSubmit = (event: { preventDefault: () => void }) => {
+}: LoginPageProps): JSX.Element => {
+	const onSubmit = (event: { preventDefault: () => void }): void => {
 		event.preventDefault();
 		return isRegisterMode ? registerUser() : signIn();
 	};
