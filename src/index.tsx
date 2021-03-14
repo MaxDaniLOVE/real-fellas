@@ -8,6 +8,7 @@ import store from './store';
 import App from './components/App';
 import axios from 'axios';
 import Spinner from './components/Spinner';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 axios.defaults.baseURL = process.env.REACT_APP_URL_BASE;
 
@@ -20,3 +21,5 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
