@@ -35,6 +35,7 @@ export interface ContainerStateProps {
 
 export interface HeaderStateProps {
   userName: string;
+  avatar: string;
 }
 
 export interface HeaderDispatchProps {
