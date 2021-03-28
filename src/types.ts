@@ -23,6 +23,7 @@ export interface SessionState {
   userName: string;
   authToken: string;
   id: string;
+  avatar: string | null;
 }
 
 export interface AppStateProps {
@@ -35,11 +36,12 @@ export interface ContainerStateProps {
 
 export interface HeaderStateProps {
   userName: string;
-  avatar: string;
+  avatar: string | null;
 }
 
 export interface HeaderDispatchProps {
   signOut(): void;
+  onPostNewAvatar(formData: FormData): void;
 }
 
 export type HeaderTypes = HeaderStateProps & HeaderDispatchProps;
@@ -123,3 +125,8 @@ export interface AlertsContainerStateProps {
 export interface AlertsContainerDispatchProps {
   closeError(): void;
 }
+
+export interface UpdateAvatarFormProps {
+  onPostNewAvatar(formData: FormData): void;
+}
+

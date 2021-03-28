@@ -5,8 +5,11 @@ import { signOut } from '../../store/ac/authActions';
 import './header.scss';
 import { HeaderDispatchProps, HeaderStateProps, HeaderTypes } from '../../types';
 import { Button } from 'reactstrap';
+import defaultAvatar from '../../assets/images/default-avatar.png';
+import UpdateAvatarForm from '../UpdateAvatarForm';
+import { onPostNewAvatar } from '../../store/ac/imagesActions';
 
-const Header = ({ signOut, userName, avatar }: HeaderTypes): JSX.Element => {
+const Header = ({ signOut, userName, avatar, onPostNewAvatar }: HeaderTypes): JSX.Element => {
 	const [ isHeaderExpanded, setIsHeaderExpanded ] = useState(false);
 	const onToggleHeader = useCallback(() => setIsHeaderExpanded(!isHeaderExpanded), [isHeaderExpanded]);
 	const onSignOut = useCallback(() => {
@@ -17,7 +20,7 @@ const Header = ({ signOut, userName, avatar }: HeaderTypes): JSX.Element => {
 		<div className={`header ${isHeaderExpanded ? 'expanded-header' : ''}`}>
 			<div className='header-info'>
 				<div className='header-user-info__wrapper' onClick={onToggleHeader}>
-					{ avatar && <img className='header-user-avatar' alt='avatar' src={avatar}/> }
+					<img className='header-user-avatar' alt='avatar' src={avatar || defaultAvatar}/>
 					<div className='header-user-name'>{userName}</div>
 				</div>
 				{
@@ -32,10 +35,15 @@ const Header = ({ signOut, userName, avatar }: HeaderTypes): JSX.Element => {
 					)
 				}
 			</div>
+			{
+				isHeaderExpanded && (
+					<UpdateAvatarForm onPostNewAvatar={onPostNewAvatar} />
+				)
+			}
 		</div>
 	);
 };
 
 const mapStateToProps = ({ session: { userName, avatar } }): HeaderStateProps => ({ userName, avatar });
-const mapDispatchToProps = (dispatch): HeaderDispatchProps => bindActionCreators({ signOut }, dispatch);
+const mapDispatchToProps = (dispatch): HeaderDispatchProps => bindActionCreators({ signOut, onPostNewAvatar }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
