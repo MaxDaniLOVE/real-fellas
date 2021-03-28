@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './spinner.scss';
 import { SpinnerStateProps } from '../../types';
 
-const Spinner = ({ showSpinner }: SpinnerStateProps) => {
+const Spinner = ({ showSpinner }: SpinnerStateProps): JSX.Element | null => {
 	const spinnerNode = showSpinner ? (
 		<div className='spinner-wrapper' >
 			<div className='spinner'>

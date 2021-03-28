@@ -35,6 +35,7 @@ export interface ContainerStateProps {
 
 export interface HeaderStateProps {
   userName: string;
+  avatar: string;
 }
 
 export interface HeaderDispatchProps {
@@ -116,9 +117,9 @@ export interface ErrorState {
   status: number;
   message: string;
 }
-export interface ErrorContainerStateProps {
+export interface AlertsContainerStateProps {
   error: ErrorState;
 }
-export interface ErrorContainerDispatchProps {
+export interface AlertsContainerDispatchProps {
   closeError(): void;
 }

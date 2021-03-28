@@ -4,7 +4,7 @@ import Message from '../Message';
 import './messagesContainer.scss';
 import { MessagesProps } from '../../types';
 
-const MessagesContainer = ({ messages }: MessagesProps) => {
+const MessagesContainer = ({ messages }: MessagesProps): JSX.Element => {
 	return (
 		<div className='messages__container'>
 			{

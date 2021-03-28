@@ -6,7 +6,7 @@ import './header.scss';
 import { HeaderDispatchProps, HeaderStateProps, HeaderTypes } from '../../types';
 import { Button } from 'reactstrap';
 
-const Header = ({ signOut, userName }: HeaderTypes) => {
+const Header = ({ signOut, userName, avatar }: HeaderTypes): JSX.Element => {
 	const [ isHeaderExpanded, setIsHeaderExpanded ] = useState(false);
 	const onToggleHeader = useCallback(() => setIsHeaderExpanded(!isHeaderExpanded), [isHeaderExpanded]);
 	const onSignOut = useCallback(() => {
@@ -16,7 +16,10 @@ const Header = ({ signOut, userName }: HeaderTypes) => {
 	return (
 		<div className={`header ${isHeaderExpanded ? 'expanded-header' : ''}`}>
 			<div className='header-info'>
-				<Button className='header-user-name' onClick={onToggleHeader}>{userName}</Button>
+				<div className='header-user-info__wrapper' onClick={onToggleHeader}>
+					{ avatar && <img className='header-user-avatar' alt='avatar' src={avatar}/> }
+					<div className='header-user-name'>{userName}</div>
+				</div>
 				{
 					isHeaderExpanded && (
 						<Button
@@ -33,6 +36,6 @@ const Header = ({ signOut, userName }: HeaderTypes) => {
 	);
 };
 
-const mapStateToProps = ({ session: { userName } }): HeaderStateProps => ({ userName });
+const mapStateToProps = ({ session: { userName, avatar } }): HeaderStateProps => ({ userName, avatar });
 const mapDispatchToProps = (dispatch): HeaderDispatchProps => bindActionCreators({ signOut }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
