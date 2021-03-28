@@ -13,3 +13,4 @@ export const HIDE_SPINNER = 'HIDE_SPINNER';
 export const RESET_MESSAGES = 'RESET_MESSAGES';
 export const THROW_ERROR = 'THROW_ERROR';
 export const CLOSE_ERROR = 'CLOSE_ERROR';
+export const UPDATE_AVATAR = 'UPDATE_AVATAR';
