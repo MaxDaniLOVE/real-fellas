@@ -42,6 +42,7 @@
             "error",
             "always"
         ],
-        "@typescript-eslint/no-use-before-define": [ 2, { "functions": false } ]
+        "@typescript-eslint/no-use-before-define": [ 2, { "functions": false } ],
+        "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }]
     }
 }

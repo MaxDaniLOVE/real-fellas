@@ -18,11 +18,6 @@
     display: flex;
     justify-content: space-between;
   }
-  .close-header-btn{
-    height: 2rem;
-    width: 2rem;
-    padding: 0;
-  }
   &-user-info__wrapper{
     display: flex;
   }
@@ -43,4 +38,16 @@
 
 .expanded-header {
   height: 100vh;
+  &__body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    svg{
+      height: 2rem;
+      transform: rotate(180deg);
+    }
+  }
 }
