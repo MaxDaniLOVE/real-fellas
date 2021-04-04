@@ -21,7 +21,6 @@ export interface SessionState {
   isLoggedIn: boolean;
   email: string;
   userName: string;
-  authToken: string;
   id: string;
   avatar: string | null;
 }
@@ -130,5 +129,6 @@ export interface AlertsContainerDispatchProps {
 export interface UpdateAvatarFormProps {
   onPostNewAvatar(formData: FormData): void;
   onDeleteAvatar(): void;
+  hasAvatar: boolean;
 }
 

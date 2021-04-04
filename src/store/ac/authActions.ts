@@ -10,7 +10,6 @@ export const registerUser = (): ThunkActionCreator => async (dispatch, getState)
 	dispatch(showSpinner());
 	try {
 		const { data } = await axios.post('/user/sign-up', { password, email, userName });
-		axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
 		dispatch({ type: T.SIGN_UP + T.SUCCESS, payload: { ...data } });
 	} catch (err) {
 		dispatch(throwError(err));
@@ -23,7 +22,6 @@ export const signIn = (): ThunkActionCreator => async (dispatch, getState): Prom
 	dispatch(showSpinner());
 	try {
 		const { data } = await axios.post('/user/sign-in', { password, email });
-		axios.defaults.headers.common['Authorization'] = `Bearer ${data.authToken}`;
 		dispatch({ type: T.SIGN_IN + T.SUCCESS, payload: { ...data } });
 	} catch (err) {
 		dispatch(throwError(err));
@@ -35,7 +33,6 @@ export const signOut = (): ThunkActionCreator => async (dispatch): Promise<void>
 	dispatch(showSpinner());
 	try {
 		await axios.get('/user/sign-out');
-		axios.defaults.headers.common['Authorization'] = '';
 		dispatch({ type: T.SIGN_OUT + T.SUCCESS });
 		dispatch(resetMessages());
 	} catch (err) {

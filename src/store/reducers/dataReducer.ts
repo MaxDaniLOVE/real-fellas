@@ -9,7 +9,7 @@ const initialState: DataState = {
 	showSpinner: false,
 };
 
-const dataReducer = (state: DataState = initialState, { type, payload }) => {
+const dataReducer = (state: DataState = initialState, { type, payload }): DataState => {
 	switch (type) {
 	case T.INIT_WS + T.SUCCESS:
 	case T.INIT_WS + T.ERROR:

@@ -35,6 +35,7 @@ const Header = ({
 				isHeaderExpanded && (
 					<div className='expanded-header__body'>
 						<UpdateAvatarForm
+							hasAvatar={!!avatar}
 							onPostNewAvatar={onPostNewAvatar}
 							onDeleteAvatar={onDeleteAvatar}
 						/>

@@ -5,7 +5,6 @@ const initialState: SessionState = {
 	isLoggedIn: false,
 	email: '',
 	userName: '',
-	authToken: '',
 	id: '',
 	avatar: '',
 };

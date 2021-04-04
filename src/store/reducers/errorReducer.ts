@@ -3,7 +3,7 @@ import { ErrorState } from '../../types';
 
 const initialState: ErrorState = {} as ErrorState;
 
-const errorReducer = (state: ErrorState = initialState, { type, payload }) => {
+const errorReducer = (state: ErrorState = initialState, { type, payload }): ErrorState => {
 	switch (type) {
 	case T.THROW_ERROR:
 		return payload;
