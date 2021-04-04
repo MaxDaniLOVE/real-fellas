@@ -7,10 +7,16 @@ import { HeaderDispatchProps, HeaderStateProps, HeaderTypes } from '../../types'
 import { Button } from 'reactstrap';
 import defaultAvatar from '../../assets/images/default-avatar.png';
 import UpdateAvatarForm from './UpdateAvatarForm';
-import { onPostNewAvatar } from '../../store/ac/imagesActions';
+import { onPostNewAvatar, onDeleteAvatar } from '../../store/ac/imagesActions';
 import { Chevron } from '../../assets/icons';
 
-const Header = ({ signOut, userName, avatar, onPostNewAvatar }: HeaderTypes): JSX.Element => {
+const Header = ({
+	signOut,
+	userName,
+	avatar,
+	onPostNewAvatar,
+	onDeleteAvatar,
+}: HeaderTypes): JSX.Element => {
 	const [ isHeaderExpanded, setIsHeaderExpanded ] = useState(false);
 	const onToggleHeader = useCallback(() => setIsHeaderExpanded(!isHeaderExpanded), [isHeaderExpanded]);
 	const onSignOut = useCallback(() => {
@@ -28,7 +34,10 @@ const Header = ({ signOut, userName, avatar, onPostNewAvatar }: HeaderTypes): JS
 			{
 				isHeaderExpanded && (
 					<div className='expanded-header__body'>
-						<UpdateAvatarForm onPostNewAvatar={onPostNewAvatar} />
+						<UpdateAvatarForm
+							onPostNewAvatar={onPostNewAvatar}
+							onDeleteAvatar={onDeleteAvatar}
+						/>
 						<Button
 							className='w-100'
 							color='danger'
@@ -45,5 +54,7 @@ const Header = ({ signOut, userName, avatar, onPostNewAvatar }: HeaderTypes): JS
 };
 
 const mapStateToProps = ({ session: { userName, avatar } }): HeaderStateProps => ({ userName, avatar });
-const mapDispatchToProps = (dispatch): HeaderDispatchProps => bindActionCreators({ signOut, onPostNewAvatar }, dispatch);
+const mapDispatchToProps = (dispatch): HeaderDispatchProps => bindActionCreators({
+	signOut, onPostNewAvatar, onDeleteAvatar
+}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -3,7 +3,10 @@ import './updateAvatarForm.scss';
 import { UpdateAvatarFormProps } from '../../../types';
 import { Button } from 'reactstrap';
 
-const UpdateAvatarForm = ({ onPostNewAvatar }: UpdateAvatarFormProps): JSX.Element => {
+const UpdateAvatarForm = ({
+	onPostNewAvatar,
+	onDeleteAvatar,
+}: UpdateAvatarFormProps): JSX.Element => {
 	const fileInput: Ref<any> = useRef(null);
 	const onSubmit = useCallback(e => {
 		e.preventDefault();
@@ -33,10 +36,17 @@ const UpdateAvatarForm = ({ onPostNewAvatar }: UpdateAvatarFormProps): JSX.Eleme
 				</label>
 				<Button
 					className='ml-2'
-					color='danger'
+					color='success'
 					type='submit'
 				>
 					Upload
+				</Button>
+				<Button
+					className='ml-2'
+					color='danger'
+					onClick={onDeleteAvatar}
+				>
+					Delete
 				</Button>
 			</div>
 		</form>

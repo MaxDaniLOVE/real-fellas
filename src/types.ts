@@ -42,6 +42,7 @@ export interface HeaderStateProps {
 export interface HeaderDispatchProps {
   signOut(): void;
   onPostNewAvatar(formData: FormData): void;
+  onDeleteAvatar(): void;
 }
 
 export type HeaderTypes = HeaderStateProps & HeaderDispatchProps;
@@ -128,5 +129,6 @@ export interface AlertsContainerDispatchProps {
 
 export interface UpdateAvatarFormProps {
   onPostNewAvatar(formData: FormData): void;
+  onDeleteAvatar(): void;
 }
 
