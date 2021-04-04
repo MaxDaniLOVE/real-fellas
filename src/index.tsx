@@ -11,6 +11,7 @@ import Spinner from './components/Spinner';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 axios.defaults.baseURL = process.env.REACT_APP_URL_BASE;
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
 	<Provider store={store}>
