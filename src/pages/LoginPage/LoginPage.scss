@@ -4,19 +4,12 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  label[for='toggleRegisterMode'] {
-    display: flex;
-    justify-content: center;
+  .login-form{
+    width: 70%;
+    display: inherit;
+    flex-direction: column;
   }
-}
-
-.login-form{
-  label {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  .btn{
-    width: 100%;
-    margin: .5rem 0;
+  .input-wrapper {
+    margin-bottom: .5rem;
   }
 }

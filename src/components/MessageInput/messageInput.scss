@@ -2,8 +2,11 @@
 
 .send-message__wrapper{
   padding: 1rem;
-  input{
-    border-color: none;
+  justify-content: space-between;
+  display: flex;
+  .message__input{
+    width: 100%;
+    margin-right: .5rem;
   }
   .btn{
     background-color: $dim-grey;

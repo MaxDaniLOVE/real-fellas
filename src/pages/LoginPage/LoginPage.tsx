@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input, Form, Button, Label, CustomInput } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { authFormChange } from '../../store/ac/authFormChange';
@@ -8,6 +7,12 @@ import { switchRegisterMode } from '../../store/ac/switchRegisterMode';
 import { Redirect } from 'react-router-dom';
 import { LoginPageDispatchProps, LoginPageProps, LoginPageStateProps } from '../../types';
 import './LoginPage.scss';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 const LoginPage = ({
 	authFormChange,
@@ -24,31 +29,32 @@ const LoginPage = ({
 	if (isLoggedIn) return <Redirect to='/' />;
 	return (
 		<div className='login-form__wrapper'>
-			<Form className='login-form' onChange={authFormChange} onSubmit={onSubmit}>
+			<form className='login-form' onChange={authFormChange} onSubmit={onSubmit}>
 				{
 					isRegisterMode && (
-						<Label htmlFor='userName'>
-                            User name:
+						<FormControl className='input-wrapper'>
+							<InputLabel htmlFor='userName'>User name:</InputLabel>
 							<Input id='userName' />
-						</Label>
+						</FormControl>
 					)
 				}
-				<Label htmlFor='email'>
-                    Email:
-					<Input id='email' type='email' />
-				</Label>
-				<Label htmlFor='password'>
-                    Password:
-					<Input id='password' type='password' />
-				</Label>
+				<FormControl className='input-wrapper'>
+					<InputLabel htmlFor='email'>Email:</InputLabel>
+					<Input id='email' />
+				</FormControl>
+				<FormControl className='input-wrapper'>
+					<InputLabel htmlFor='password'>Password:</InputLabel>
+					<Input id='password' />
+				</FormControl>
 				<Button type='submit'>{isRegisterMode ? 'Register' :'Sign In'}</Button>
-			</Form>
-			<Label htmlFor='toggleRegisterMode'>
-				<CustomInput id='toggleRegisterMode' type='switch' onChange={switchRegisterMode}/>
-				{isRegisterMode ? 'switch to sign-in mode' : 'switch to register mode'}
-			</Label>
+			</form>
+			<FormControlLabel
+				value='end'
+				control={<Switch  color='default' id='toggleRegisterMode' onChange={switchRegisterMode} />}
+				label={isRegisterMode ? 'switch to sign-in mode' : 'switch to register mode'}
+				labelPlacement='end'
+			/>
 		</div>
-
 	);
 };
 
