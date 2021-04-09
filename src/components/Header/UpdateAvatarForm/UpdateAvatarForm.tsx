@@ -1,7 +1,10 @@
 import React, { Ref, useCallback, useRef, useState } from 'react';
 import './updateAvatarForm.scss';
 import { UpdateAvatarFormProps } from '../../../types';
-import { Button } from 'reactstrap';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import { Image } from '../../../assets/icons';
 
 const UpdateAvatarForm = ({
 	onPostNewAvatar,
@@ -9,7 +12,7 @@ const UpdateAvatarForm = ({
 	hasAvatar,
 }: UpdateAvatarFormProps): JSX.Element => {
 	const fileInput: Ref<any> = useRef(null);
-	const [ fileName, setFileName ] = useState('Add image');
+	const [ fileName, setFileName ] = useState('');
 	const onSubmit = useCallback(async e => {
 		e.preventDefault();
 		const formData = new FormData();
@@ -21,27 +24,30 @@ const UpdateAvatarForm = ({
 		setFileName('Add image');
 	}, [ onPostNewAvatar ]);
 	const onChangeFileInput = (e): void => {
-		setFileName(e.target.files[0]?.name || 'Add image');
+		setFileName(e.target.files[0]?.name || '');
 	};
 	return (
 		<form className='avatar-form' onSubmit={onSubmit}>
 			<div className='file-input__wrapper'>
 				<label htmlFor='avatar' className='m-0 w-100'>
-					<input
-						accept='image/*'
+					<Input
+						inputRef={fileInput}
 						onChange={onChangeFileInput}
-						ref={fileInput}
 						name='avatar'
 						id='avatar'
 						type='file'
 					/>
-					<span className='btn btn-outline-light w-100'>{fileName}</span>
+					<Button component='span' >
+						<SvgIcon color='secondary'>
+							<Image />
+						</SvgIcon>
+					</Button>
+					{fileName && <span className='btn btn-outline-light w-100'>{fileName}</span>}
 				</label>
 				{
 					fileInput?.current?.files[0] && (
 						<Button
-							className='ml-2'
-							color='success'
+							color='primary'
 							type='submit'
 						>
 							{hasAvatar ? 'Update' : 'Upload'}
@@ -52,7 +58,7 @@ const UpdateAvatarForm = ({
 					hasAvatar && (
 						<Button
 							className='ml-2'
-							color='danger'
+							color='secondary'
 							onClick={onDeleteAvatar}
 						>
 							Delete

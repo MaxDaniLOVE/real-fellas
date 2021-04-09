@@ -44,7 +44,7 @@ const LoginPage = ({
 				</FormControl>
 				<FormControl className='input-wrapper'>
 					<InputLabel htmlFor='password'>Password:</InputLabel>
-					<Input id='password' />
+					<Input type='password' id='password' />
 				</FormControl>
 				<Button type='submit'>{isRegisterMode ? 'Register' :'Sign In'}</Button>
 			</form>

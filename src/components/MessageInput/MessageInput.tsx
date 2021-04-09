@@ -11,7 +11,11 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import Input from '@material-ui/core/Input';
 
 const MessageInput = ({ message, onChangeMessageInput, sendMessage }: MessageInputProps): JSX.Element => {
-	const onClick = (): void => sendMessage(message);
+	const onClick = (): void => {
+		const trimmed = message.trim();
+		if (!trimmed) return;
+		sendMessage(message.trim());
+	};
 	return (
 		<Box p='.5rem' boxShadow={5} className='send-message__wrapper'>
 			<Input
